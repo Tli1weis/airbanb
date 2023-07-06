@@ -3,18 +3,34 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
+    "@mui/icons-material": "^5.11.16",
+    "@mui/material": "^5.13.4",
+    "@reduxjs/toolkit": "^1.9.5",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^13.0.0",
     "@testing-library/user-event": "^13.2.1",
+    "antd": "^5.6.1",
+    "axios": "^1.4.0",
+    "classnames": "^2.3.2",
+    "craco-less": "2.1.0-alpha.0",
+    "http-proxy-middleware": "^2.0.6",
+    "normalize.css": "^8.0.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-redux": "^8.0.7",
+    "react-router-dom": "^6.12.0",
     "react-scripts": "5.0.1",
+    "react-transition-group": "^4.4.5",
+    "styled-components": "^6.0.0-rc.3",
+    "underscore": "^1.13.6",
     "web-vitals": "^2.1.0"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
+    "start": "craco start",
+    "build": "craco build",
+    "test": "cracos test",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -34,5 +50,12 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@craco/craco": "^7.0.0-alpha.9",
+    "autoprefixer": "^10.4.14",
+    "postcss-import": "^15.1.0",
+    "postcss-nesting": "^11.3.0",
+    "tailwindcss": "^3.3.2"
   }
 }

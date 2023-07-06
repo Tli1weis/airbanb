@@ -1,0 +1,32 @@
+ .bar-enter{
+    @apply translate-y-[58px] opacity-0 scale-[2.85714,1.375]
+  
+ }
+ .bar-enter-active{
+    @apply translate-y-[0] opacity-[1] scale-[1.0] transition-all ease-linear duration-[250ms]
+
+ }
+ .bar-exit{
+    @apply opacity-[0]
+ 
+ }
+
+
+ .detail-enter{
+   @apply translate-y-[-58px] opacity-0 scale-[0.35,0.727273]
+ 
+}
+ .detail-enter-active{
+   @apply translate-y-[0] opacity-[1] scale-[1.0] transition-all ease-linear duration-[250ms]
+
+}
+ .detail-exit{
+   @apply opacity-[1] scale-[1.0] translate-y-0
+
+}
+ .detail-exit-active{
+    @apply  opacity-0 scale-[0.35,0.727273] translate-y-[-58px] transition-all ease-linear duration-[250ms] 
+  
+ }
+
+ 

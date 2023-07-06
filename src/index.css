@@ -1,13 +1,44 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
+@tailwind base;
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+@tailwind components;
+@import '@/views/Demo/custom.css';
+
+@tailwind utilities;
+
+@layer base{
+   body{
+      font-size: 14px;
+      font-family: Circular, PingFang-SC, "Hiragino Sans GB", 微软雅黑, "Microsoft YaHei", "Heiti SC" !important;
+      color:#484848;
+   }
+   
 }
+@layer components{
+
+    .btns{
+       @apply  rounded-[50%]  border bg-[#f7f7f7] transition cursor-pointer
+    }
+    .MuiRating-icon{
+     @apply -mr-[2px]
+   }
+    .btnShadow{
+        @apply shadow-md transition  cursor-pointer
+     }
+  
+}
+.MuiPaginationItem-icon{
+  font-size: 24px!important;
+ }
+ .Mui-selected{
+   color: #fff!important;
+   background: #000!important;
+
+ }
+ .MuiPaginationItem-page {
+   margin: 0 8px!important;
+   &:hover{
+      text-decoration: underline;
+   }
+ }
+ 
+
