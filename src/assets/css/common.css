@@ -1,6 +1,8 @@
 :root{
     --primary-color:#ff9854;
+    --theme-gradient:linear-gradient(90deg,#ff9720,#ffae37);
     --van-search-left-icon-color:var(--primary-color)!important;
+    --van-primary-color:var(--primary-color);
 }
 body{
     font-size: 14px;
@@ -13,4 +15,10 @@ body{
     height: 100vh;
     background-color: #fff;
     overflow-y: auto;
+}
+.icon_check{
+    display: inline-block;
+    width: 17px;
+    height: 17px;
+    background: url(../img/detail/icon_check.png)0 0 /100% 100%;
 }

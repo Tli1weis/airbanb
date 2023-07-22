@@ -5,8 +5,9 @@ import useCityStore from '@/stores/modules/city'
 import { storeToRefs } from 'pinia';
 import formatTime from '@/utils/formatTime'
 import countStayDay from '@/utils/countStayDay'
-import { ref } from 'vue';
+import { computed, ref } from 'vue';
 import useHomeStore from '@/stores/modules/home';
+import useDateStore from '@/stores/modules/main';
 
 
    const getPosition=()=>{
@@ -27,26 +28,35 @@ import useHomeStore from '@/stores/modules/home';
    const toCity=()=>{
         router.push('/city')
    }
-
-   const nowDate=new Date()
-   const newDate=new Date().setDate(nowDate.getDate()+1)
-   const startDate=ref(formatTime(nowDate))
-   const endDate=ref(formatTime(newDate))
-   const stayCount=ref(countStayDay(newDate,nowDate))
-
-
+   const dateStore=useDateStore()
+   const {startDate,endDate}=storeToRefs(dateStore)
+   const transformStart=computed(()=>formatTime(startDate.value))
+   const transformEnd=computed(()=>formatTime(endDate.value))
+   const stayCount=ref(countStayDay(endDate.value,startDate.value))
    const show=ref(false)
  
    const onConfirm=(value)=>{
-    // console.log(value);
-    startDate.value=formatTime(value[0])
-    endDate.value=formatTime(value[1])
+    dateStore.startDate=value[0]
+    dateStore.endDate=value[1]
     stayCount.value=countStayDay(value[1],value[0])
     show.value=false
    }
 
    const homeStore=useHomeStore()
    const {hotSuggests}=storeToRefs(homeStore)
+   
+   
+   const searchClick=()=>{
+        router.push({
+            path:'/search',
+            query:{
+                startDate:startDate.value,
+                endDate:endDate.value,
+                currentCity:currentCity.value.cityName
+            }
+        })
+   }
+
 </script>
 
 <template>
@@ -62,7 +72,7 @@ import useHomeStore from '@/stores/modules/home';
                 <div class="start">
                     <div class="date">
                         <div class="text">入住</div>
-                        <div class="time">{{startDate}}</div>
+                        <div class="time">{{transformStart}}</div>
                     </div>
                     <div class="dwell-time">
                         共{{stayCount}}晚
@@ -71,7 +81,7 @@ import useHomeStore from '@/stores/modules/home';
                 <div class="end">
                     <div class="date">
                         <div class="text">离店</div>
-                        <div class="time">{{endDate}}</div>
+                        <div class="time">{{transformEnd}}</div>
                     </div>
                 </div>
         </div>
@@ -88,11 +98,14 @@ import useHomeStore from '@/stores/modules/home';
         <div class="hot-city">
             <div class="hotList">
                 <template v-for="(item,index) in hotSuggests" :key="item">
-                    <div class="hotItem" :style="{background:item.tagText.background.color,color:item.tagText.color}">
+                    <div class="hotItem"  @click="searchClick" :style="{background:item.tagText.background.color,color:item.tagText.color}">
                         {{ item.tagText.text }}
                     </div>
                 </template>
             </div>
+        </div>
+        <div class="search-btn" @click="searchClick">
+            <div class="text">开始搜索</div>
         </div>
   </div>
   
@@ -177,7 +190,8 @@ import useHomeStore from '@/stores/modules/home';
             }
         }
         .hot-city{
-            margin: 20px 0;
+            margin: 20px 0 10px;
+            
            .hotList{
             display: flex;
             flex-wrap: wrap;
@@ -190,6 +204,20 @@ import useHomeStore from '@/stores/modules/home';
                 line-height: 1;
             }
            }
+        }
+        .search-btn{
+            width: 100%;
+            height: 40px;
+            line-height: 40px;
+            border-radius: 20px;
+            text-align: center;
+            font-weight: 400;
+            font-size: 16px;
+            background-image:var(--theme-gradient) ;
+        
+            .text{
+                color: #fff;
+            }
         }
     }
     

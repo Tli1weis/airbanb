@@ -29,6 +29,20 @@ const router=createRouter({
                 hiddenNavBar:true
             }
         },
+        {
+            path:'/search',
+            component:()=>import('../views/Search/index.vue'),
+            meta:{
+                hiddenNavBar:true
+            }
+        },
+        {
+            path:'/detail/:id',
+            component:()=>import('../views/Detail/index.vue'),
+            meta:{
+                hiddenNavBar:true
+            }
+        },
     ]
 })
 export default router
